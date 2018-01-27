@@ -80,18 +80,33 @@ function playRound(playerSelection, computerSelection){
 //console.log(result);
 //console.log("player: " + playerSelection + " computer " + computerSelection);
 }
-function game(playerSelection){
-  let c = 0;
-  let p = 0;
-  let results = playRound();
-  if (results === "win"){
-    p++;
-  } elseif( results === "lose"){
-    c++;
-  }else{
+let c = 0;
+let p = 0;
+let t = 0;
 
-  }
-console.log("win: " + p + " lose: " + c);
+function game(playerSelection){
+  let computerSelection = computerPlay();
+
+    let results = playRound(playerSelection, computerSelection);
+    if (results === "win"){
+      p++;
+    } else if(results === "lose"){
+      c++;
+    }else{
+      t++;
+    }
+
+    let sum = t + c + p;
+
+console.log("Total rounds: " + sum);
+console.log("win: " + p + " lose: " + c + " tie: " + t);
+
+if (sum >= 5 && (c > p)){
+  alert('you lose!');
+}
+if (sum >= 5 && (p > c)) {
+  alert('you win!');
+}
 }
 
 
