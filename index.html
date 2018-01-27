@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <div id="playerChoice">
+<button id="rock" onclick="game('rock')">rock</button>
+<button id="paper" onclick="game('paper')">paper</button>
+<button id="scissors" onclick="game('scissors')">scissors</button>
+  </div>
+
+
+  <script>
+
+function computerPlay() {
+  let n = Math.floor(Math.random()*3)+1;
+  if(n === 1){
+  return "rock";
+  }
+  else if (n ===2 ) {
+     return "paper";
+  }
+  else if (n === 3) {
+  return "scissors";
+  }
+}
+
+function countComputerPlay() {
+
+let r = 0;
+let p = 0;
+let s = 0;
+  for(i = 0; i < 100; i++) {
+    let result = computerPlay();
+      if (result === "rock") {
+        r++;
+      }
+      else if (result === "paper") {
+        p++;
+      }
+      else {
+        s++;
+      }
+    }
+  return("rock: " + r + " paper " + p + " scissors " + s);
+}
+function playRound(playerSelection, computerSelection){
+  let result;
+  // case player selection = rock
+  if (playerSelection === "rock"){
+      if(computerSelection === "rock"){
+        result = "tie";
+      } else if (computerSelection === "paper") {
+          result = "lose";
+      } else {
+        result = "win";
+      }
+  }
+  if (playerSelection === "paper") {
+      if(computerSelection === "rock"){
+        result = "win";
+      } else if (computerSelection === "paper") {
+          result = "tie";
+      } else {
+          result = "lose";
+      }
+  }
+  if (playerSelection === "scissors") {
+      if(computerSelection === "rock"){
+      result = "lose";
+      } else if (computerSelection === "paper") {
+        result = "win";
+      } else {
+      result = "tie";
+      }
+  }
+  return result;
+//console.log(result);
+//console.log("player: " + playerSelection + " computer " + computerSelection);
+}
+function game(playerSelection){
+  let c = 0;
+  let p = 0;
+  let results = playRound();
+  if (results === "win"){
+    p++;
+  } elseif( results === "lose"){
+    c++;
+  }else{
+
+  }
+console.log("win: " + p + " lose: " + c);
+}
+
+
+
+
+  </script>
+</body>
+</html>
