@@ -6,10 +6,21 @@
 
 <body>
   <div id="playerChoice">
-<button id="rock" onclick="game('rock')">rock</button>
-<button id="paper" onclick="game('paper')">paper</button>
-<button id="scissors" onclick="game('scissors')">scissors</button>
+    <button id="rock" onclick="game('rock')">rock</button>
+    <button id="paper" onclick="game('paper')">paper</button>
+    <button id="scissors" onclick="game('scissors')">scissors</button>
   </div>
+
+  <div class="counterBox">
+    Player: <span id="winCounterPlayer">0</span>
+    Computer: <span id="winCounterComputer">0</span>
+    Draw: <span id="drawCount">0</span>
+  </div>
+
+  <div id="winnerAnnounceBox"> </div>
+
+
+
 
 
   <script>
@@ -76,13 +87,13 @@ function playRound(playerSelection, computerSelection){
       result = "tie";
       }
   }
+
   return result;
-//console.log(result);
-//console.log("player: " + playerSelection + " computer " + computerSelection);
 }
-let c = 0;
-let p = 0;
-let t = 0;
+
+let c = 0; // computer score
+let p = 0; // player score
+let t = 0; // tie
 
 function game(playerSelection){
   let computerSelection = computerPlay();
@@ -95,22 +106,36 @@ function game(playerSelection){
     }else{
       t++;
     }
-
-    let sum = t + c + p;
-
-console.log("Total rounds: " + sum);
-console.log("win: " + p + " lose: " + c + " tie: " + t);
-
-if (sum >= 5 && (c > p)){
-  alert('you lose!');
-}
-if (sum >= 5 && (p > c)) {
-  alert('you win!');
-}
+    updateScoreboard();
+    displayWinner();
 }
 
+function resetScore(){
+  c = 0;
+  t = 0;
+  p = 0;
+}
+
+function displayWinner(){
+  if (c >= 5){
+    document.getElementById('winnerAnnounceBox').innerHTML = "you lose";
+    resetScore();
+  }
+
+  else if (p >= 5) {
+    document.getElementById('winnerAnnounceBox').innerHTML = "you win";
+    resetScore();
+  } else {
+    document.getElementById('winnerAnnounceBox').innerHTML = "first to 5 wins";
+  }
+}
 
 
+function updateScoreboard(){
+  document.getElementById('winCounterComputer').innerHTML = c;
+  document.getElementById('winCounterPlayer').innerHTML = p;
+  document.getElementById('drawCount').innerHTML = t;
+}
 
   </script>
 </body>
